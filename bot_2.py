@@ -18,7 +18,7 @@ async def greeting(message:Message):
 goodbyes = ['пока', 'Пока', 'Пока!']
 @bot.on.message(text=goodbyes)
 async def goodbye(message:Message):
-    await message.answer('Пока! До скорой встречи')
+    await message.answer('До скорой встречи!')
 
 kub = ['кубик', 'Кубик']
 @bot.on.message(text=kub)

@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from vkbottle import Bot
 from vkbottle.bot import Message
 import random
+from datetime import datetime
 
 load_dotenv()
 
@@ -13,15 +14,38 @@ bot = Bot(token = TOKEN)
 @bot.on.message()
 async def smart_bot(message:Message):
     text = message.text.lower()
+    # await message.answer(f'Твой ID: {message.from_id}. А длина твоего сообщения: {len(text)} символов ')
 
-    if 'привет' in text:
-        await message.answer('Привет! Рад тебя видеть')
-    elif 'пока' in text or 'пока!' in text:
-        await message.answer('До скорой встречи!')
-    elif 'помощь' in text:
-        await message.answer('Давай я тебе помогу, опиши свою проблему')
+# ЭХО-БОТ
+    if 'секрет' in text or 'пароль' in text:
+        await message.answer( "Я никому не скажу! 🤫")
     else:
-        await message.answer("Я тебя не понимаю")
+        await message.answer(text)
+
+# СЧИТАЕТ КОЛ-ВО СЛОВ
+    # text = text.split()
+    # if len(text) <= 3:
+    #     await message.answer(f'Краткость - сетра таланта!\nКол-во слов: {len(text)}')
+
+    # elif len(text) > 10:
+    #     await message.answer(f'Ого, целую книгу написал!\nКол-во слов: {len(text)}')
+
+    # else:
+    #     await message.answer(f'Вот, нормальное сообщение!\nКол-во слов: {len(text)}')
+
+# ОБЫЧНОЕ ОБЩЕНИЕ 
+    # if 'привет' in text:
+    #     await message.answer('Привет! Рад тебя видеть')
+
+    # elif 'пока' in text:
+    #     await message.answer('До скорой встречи!')
+
+    # elif 'который час' in text or 'время' in text:
+    #     cur_time = datetime.now().strftime('%H:%M')
+    #     await message.answer(f'сейчас {cur_time}')
+
+    # else:
+    #     await message.answer("Я тебя не понимаю")
 
 
 @bot.on.message(text=['кубик', 'Кубик'])
